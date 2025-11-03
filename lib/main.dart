@@ -154,7 +154,18 @@ class _TodoListPageState extends State<TodoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mi lista de tareas')),
+      appBar: AppBar(
+
+        toolbarHeight: 100.0,
+
+        title: const Text(
+          'Mi lista de tareas',
+          style: TextStyle(
+            fontSize: 28.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
 
       body: ListView.builder(
         itemCount: _tasks.length,
@@ -176,7 +187,7 @@ class _TodoListPageState extends State<TodoListPage> {
             ),
 
             child: Card(
-              margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 4.0),
               child: ListTile(
                 leading: Checkbox(
                   value: _taskDone[index],
@@ -203,6 +214,12 @@ class _TodoListPageState extends State<TodoListPage> {
         onPressed: _showAddDialog,
         tooltip: 'Añadir Tarea',
         child: const Icon(Icons.add),
+      ),
+
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        elevation: 0,
+        child: Container(height: 8.0),
       ),
     );
   }
