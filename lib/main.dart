@@ -105,51 +105,105 @@ class _TodoListPageState extends State<TodoListPage> {
     setState(() {
       _tasks.addAll(loadedTask);
       _taskDone.addAll(
-        loadedTaskDone.map((bol)=> bol == 'true' ? true : false),
+        loadedTaskDone.map((bol) => bol == 'true' ? true : false),
       );
     });
   }
-//Metodo para mostrar un espacio para añadir tareas (pop-up)
+  //Metodo para mostrar un espacio para añadir tareas (pop-up)
 
-void _showAddDialog(){
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text('Nueva Tarea'),
-        content: TextField(
-          controller: _taskController,
-          autofocus: true,
-          decoration: const InputDecoration(hintText: 'Escribe tu tarea aquí...'),
-        ),
-      //botones para el dialogo
-        actions: [
-
-          //para CANCELAR
-          TextButton(
-            child: Text('Cancelar'),
-            onPressed:() {
-              _taskController.clear();
-              Navigator.of(context).pop();
-            },
+  void _showAddDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Nueva Tarea'),
+          content: TextField(
+            controller: _taskController,
+            autofocus: true,
+            decoration: const InputDecoration(
+              hintText: 'Escribe tu tarea aquí...',
+            ),
           ),
+          //botones para el dialogo
+          actions: [
+            //para CANCELAR
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                _taskController.clear();
+                Navigator.of(context).pop();
+              },
+            ),
 
-          //para GUARDAR
-          TextButton(
-            child: Text('Guardar'),
-            onPressed: (){
-              _addTask();
-              Navigator.of(context).pop();
+            //para GUARDAR
+            TextButton(
+              child: Text('Guardar'),
+              onPressed: () {
+                _addTask();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //Metodo de construccion UI
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Mi lista de tareas')),
+
+      body: ListView.builder(
+        itemCount: _tasks.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            key: Key(_tasks[index] + index.toString()),
+
+            onDismissed: (direction) {
+              _removeTask(index);
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('Tarea Eliminada')));
             },
-          ),
-        ],
-      );
-    },
-  );
-}
+            background: Container(
+              color: Colors.red,
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Icon(Icons.delete, color: Colors.white),
+            ),
 
-//Metodo de construccion UI
+            child: Card(
+              margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              child: ListTile(
+                leading: Checkbox(
+                  value: _taskDone[index],
+                  onChanged: (bool? value) {
+                    _toggleTask(index);
+                  },
+                ),
+                title: Text(
+                  _tasks[index],
 
-
-
+                  style: TextStyle(
+                    decoration: _taskDone[index]
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+      //Boton flotante de la esquina
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showAddDialog,
+        tooltip: 'Añadir Tarea',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
 }
