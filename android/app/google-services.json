@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "501364080666",
+    "project_id": "app-firebase-88d0e",
+    "storage_bucket": "app-firebase-88d0e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501364080666:android:02e1248c2e870e8cc091a3",
+        "android_client_info": {
+          "package_name": "com.appFlutterSharon.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5o7-YMrSZbjbNzQJqXCN1q4BhV8cWzIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501364080666:android:65d838d774661820c091a3",
+        "android_client_info": {
+          "package_name": "com.example.todo_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5o7-YMrSZbjbNzQJqXCN1q4BhV8cWzIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501364080666:android:238b14160cb8c209c091a3",
+        "android_client_info": {
+          "package_name": "com.sharonFlutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5o7-YMrSZbjbNzQJqXCN1q4BhV8cWzIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
